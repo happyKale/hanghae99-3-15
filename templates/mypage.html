@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <!--bulma link-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!-- -->
+    <title>연수구 가치봉사 마이페이지</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+    <style>
+        body {
+            background-color: #efebe9;
+        }
+
+        .main-header {
+            height: 260px;
+            width: 100%;
+            background-color: white;
+            padding-top: 30px;
+        }
+
+        .logo_img {
+            height: 200px;
+            width: 300px;
+            display: block;
+            margin: auto;
+        }
+
+        .mypage {
+            width: 1200px;
+            margin: auto;
+            margin-top: 50px;
+            margin-bottom: 100px;
+            padding: 50px;
+            border-radius: 25px;
+            background-color: white;
+        }
+
+        .mypage-title {
+            font-family: 'Black Han Sans', sans-serif;
+            text-align: center;
+            font-size: 50px;
+            color: #005005;
+        }
+
+        .volunteer-scheduled,
+        .volunteer-completed {
+            width: 1040px;
+            /*border: 2px solid black;*/
+            margin: auto;
+            margin-bottom: 80px;
+            border-radius: 10px;
+        }
+
+        .volunteer-title {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: bold;
+            color: #005005;
+            display: inline-block;
+        }
+
+        .total-volunteer-hour {
+            font-family: 'Noto Sans KR', sans-serif;
+            width: 300px;
+            font-size: 25px;
+            float: right;
+            text-align: right;
+            color: #005005;
+        }
+
+        .card-container {
+            width: 1040px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .card-container::after {
+            content: "";
+            width: 330px;
+        }
+
+        .card {
+            flex-basis: 330px;
+            width: 330px;
+            height: 300px;
+            margin-top: 60px;
+            border-radius: 12px;
+            border: none;
+            background-color: #f5f5f5;
+            font-family: 'Noto Sans KR', sans-serif;
+            padding-top: 10px;
+            transition: transform 120ms ease-in
+        }
+
+        #card-box-completed > .card {
+            height: 240px;
+            margin-top: 30px;
+        }
+
+        .card:hover {
+            transform: translate(0, -10px);
+            cursor: pointer;
+            background-color: white;
+            box-shadow: rgba(0, 0, 0, 0.13) 0px 10px 10px, rgba(0, 0, 0, 0.18) 0px 6px 6px;
+        }
+
+        .card-title {
+            width: 250px;
+            font-size: 20px;
+            color: #373737;
+            font-weight: bold;
+        }
+
+        .card-desc {
+            border-top: 2px solid lightgray;
+            margin-top: 20px;
+            padding-top: 20px;
+        }
+
+        .card-id {
+            display: block;
+        }
+
+        .card-period,
+        .card-hour {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .card-deadline {
+            border: 4px solid gray;
+            width: 150px;
+            height: 50px;
+            font-size: 22px;
+            line-height: 38px;
+            text-align: center;
+            position: absolute;
+            bottom: 60px;
+            left: 85px;
+            margin: auto;
+        }
+
+        #card-box-completed > div > div > .card-title {
+            width: 100%;
+        }
+
+        .font-red {
+            color: red;
+        }
+
+        .font-yellow {
+            color: rgb(218, 157, 43);
+        }
+
+        .line {
+            margin-bottom: 40px;
+            border: 1px solid lightgray;
+        }
+
+        .blind {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            clip: rect(0 0 0 0);
+            margin: -1px;
+            overflow: hidden;
+        }
+
+        .fa-heart {
+            display: block;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 40px;
+            text-align: center;
+            color: red;
+            transition: transform 100ms ease-in;
+        }
+
+        .fa-heart:hover {
+            transform: scale(1.15);
+            cursor: pointer;
+        }
+
+        .btn-done {
+            width: 100%;
+            height: 40px;
+            font-size: 17px;
+            position: absolute;
+            bottom: 0;
+            border: none;
+            background-color: #ffd54f;
+            border-radius: 0px 0px 10px 10px;
+        }
+
+        .btn-done:hover {
+            cursor: pointer;
+            background-color: #fccc30;
+        }
+
+        .page-info {
+            width: 100%;
+            height: 250px;
+            background-color: darkgray;
+        }
+
+        .modal {
+            display: none;
+            margin: auto;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 250px;
+            height: 150px;
+            background-color: #fff;
+            border: 1px solid #b1aeae8a;
+            border-radius: 5px;
+            font-family: 'Noto Sans KR', sans-serif;
+            z-index: 2;
+        }
+
+        .modal-msg {
+            font-size: 19px;
+            text-align: center;
+            margin-top: 42px;
+        }
+
+        .modal-btn-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            height: 40px;
+        }
+
+        .modal-btn {
+            text-align: center;
+            flex-grow: 1;
+            flex-basis: 45%;
+            border: 1px solid rgb(255, 208, 0);
+            background-color: rgb(253, 219, 66);
+            line-height: 38px;
+            font-size: 17px;
+        }
+
+        .modal-btn:hover {
+            background-color: rgb(255, 196, 0);
+            cursor: pointer;
+        }
+
+        .modal-background {
+            display: none;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: gray;
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        .iframe-container {
+
+        }
+    </style>
+    <script>
+        function cardDelete(event) {
+            let modal = $('.modal');
+            let modalback = $('#modalback');
+            modalback.css("display", "block");
+            modal.css("display", "flex");
+            $('.modal-msg').text('삭제하시겠습니까?');
+            let target = $(event).parent()[0].innerText.split("\n")[6];
+            let temp_html = `<p class="blind">${target}</p>`;
+            $('.modal').append(temp_html);
+        }
+
+        function cardDone(event) {
+            let modal = $('.modal');
+            let modalback = $('#modalback');
+            modalback.css("display", "block");
+            modal.css("display", "flex");
+            $('.modal-msg').text('완료하시겠습니까?');
+            let target = $(event).parent()[0].innerText.split("\n")[6];
+            let temp_html = `<p class="blind">${target}</p>`;
+            $('.modal').append(temp_html);
+        }
+
+        function cardAnswerYes(event) {
+            let id = $(event).parent()[0].parentElement.innerText.split('\n')[5];
+            let msg = $(event).parent()[0].parentElement.innerText.split('\n')[0];
+            if (msg == '완료하시겠습니까?') {
+                $.ajax({
+                    type: "POST",
+                    url: "/mypage/done",
+                    data: {id_give: id},
+                    success: function (response) {
+                        console.log(response['msg'])
+                    }
+                })
+                $('.modal').hide();
+                $('#modalback').hide();
+                window.location.reload();
+            } else if (msg == '삭제하시겠습니까?') {
+                $.ajax({
+                    type: "POST",
+                    url: "/mypage/delete",
+                    data: {id_give: id},
+                    success: function (response) {
+                        console.log(response['msg'])
+                    }
+                })
+                $('.modal').hide();
+                $('#modalback').hide();
+                window.location.reload();
+            }
+        }
+
+        function cardHide() {
+            $('#modalback').hide();
+            $('.modal').hide();
+        }
+
+    </script>
+</head>
+<body>
+<header class="main-header">
+    <img class="logo_img" src="../static/logo.png" alt="로고">
+</header>
+<section class="mypage">
+    <h1 class="mypage-title">
+        마이페이지
+    </h1>
+    <article class="volunteer-scheduled">
+        <h2 class="volunteer-title">봉사 예정</h2>
+        <div id="card-box-scheduled" class="card-container">
+            {% for row in rows %}
+                {% if row.completion == 'false' %}
+                    {% set title = row.subject %}
+                    {% set period = row.recruit_period %}
+                    {% set deadline = row.deadline %}
+                    {% set id = row.volunteer_no %}
+                    {% set completion = row.completion %}
+                    {% set url = row.href %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ title }}</h5>
+                            <p class="card-period">모집기간: {{ period }}</p>
+                        </div>
+                        <i onclick="cardDelete(this)" id="heart" class="fas fa-heart"></i>
+                        <p class="card-deadline">마감 <span class="font-red">{{ deadline }}</span>일전</p>
+                        <p class="card-id blind">{{ id }}</p>
+                        <p class="card-url blind">{{ id }}</p>
+                        <button onclick="cardDone(this)" id="completion" class="btn-done">완료하기</button>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </article>
+    <hr class="line">
+    <article class="volunteer-completed">
+        <h2 class="volunteer-title">봉사 완료</h2>
+        <p id="total-hour" class="total-volunteer-hour">총 봉사 시간: <span class="font-yellow">{{ total_hour }}시간</span></p>
+        <div id="card-box-completed" class="card-container">
+            {% for row in rows %}
+                {% if row.completion == 'true' %}
+                    {% set title = row.subject %}
+                    {% set period = row.recruit_period %}
+                    {% set deadline = row.before_deadline %}
+                    {% set id = row.volunteer_no %}
+                    {% set completion = row.completion %}
+                    {% set hour = row.hour %}
+                    <div class="card card-completed">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ title }}</h5>
+                            <div class="card-desc">
+                                <p class="card-period">모집기간: {{ period }}</p>
+                                <p class="card-hour">봉사시간: {{ hour }}시간</p>
+                            </div>
+                        </div>
+                        <p class="card-id blind">{{ id }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </article>
+    <div class="modal">
+        <p class="modal-msg"></p>
+        <div class="modal-btn-container">
+            <div onclick="cardAnswerYes(this)" id="btn-yes" class="modal-btn">
+                <span>네</span>
+            </div>
+            <div onclick="cardHide()" id="btn-no" class="modal-btn">
+                <span>아니요</span>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="page-info">
+    <button>iframe버튼</button>
+</footer>
+<div id="modalback" class="modal-background">
+</div>
+<div class="iframe-container">
+    <iframe id="card-link"></iframe>
+</div>
+</body>
+
+</html>

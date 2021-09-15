@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <!--bulma link-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!-- -->
+    <title>연수구 가치봉사</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+
+    <style>
+        body {
+            background-color: #efebe9;
+        }
+
+        .main-header {
+            height: 260px;
+            width: 100%;
+            /*border-bottom: 2px solid darkgray;*/
+            background-color: white;
+            padding-top: 30px;
+        }
+
+        .logo_img {
+            height: 200px;
+            width: 300px;
+            display: block;
+            margin: auto;
+        }
+
+        .mainpage {
+            width: 1200px;
+            margin: auto;
+            margin-top: 50px;
+            margin-bottom: 100px;
+            padding: 50px;
+            border-radius: 25px;
+            background-color: white;
+        }
+
+        .mainpage-title {
+            font-family: 'Black Han Sans', sans-serif;
+            text-align: center;
+            font-size: 50px;
+            color: #005005;
+        }
+
+        .total-volunteer-hour {
+            font-family: 'Noto Sans KR', sans-serif;
+            width: 1000px;
+            margin: auto;
+            margin-bottom: 40px;
+            font-size: 30px;
+        }
+
+        .volunteer-scheduled,
+        .volunteer-completed {
+            width: 1000px;
+            /*border: 2px solid black;*/
+            margin: auto;
+            margin-bottom: 80px;
+            border-radius: 10px;
+        }
+
+        .volunteer-title {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: bold;
+            color: #005005;
+        }
+
+        .card {
+            margin-top: 30px;
+            height: 300px;
+            border-radius: 12px;
+            border: none;
+            background-color: #f5f5f5;
+            font-family: 'Noto Sans KR', sans-serif;
+            padding-top: 10px;
+            transition: transform 120ms ease-in;
+        }
+
+        #card-box-completed > .card {
+            height: 240px;
+        }
+
+        .card:hover {
+            transform: translate(0, -12px);
+            cursor: pointer;
+        }
+
+        .card-title {
+            width: 250px;
+            font-size: 20px;
+            color: #373737;
+            font-weight: bold;
+        }
+
+        .card-id {
+            display: block;
+        }
+
+        .card-period {
+            font-size: 18px;
+        }
+
+        .card-deadline {
+            border: 4px solid gray;
+            width: 150px;
+            height: 50px;
+            font-size: 22px;
+            line-height: 38px;
+            text-align: center;
+            position: absolute;
+            bottom: 60px;
+            left: 85px;
+            margin: auto;
+        }
+
+        .font-red {
+            color: red;
+        }
+
+        .line {
+            margin-bottom: 40px;
+            border: 1px solid lightgray;
+        }
+
+        .blind {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            clip: rect(0 0 0 0);
+            margin: -1px;
+            overflow: hidden;
+        }
+
+        .fa-heart {
+            display: block;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 40px;
+            text-align: center;
+            /*color: gray;*/
+            transition: transform 100ms ease-in;
+        }
+
+        .fa-heart:hover {
+            transform: scale(1.15);
+            cursor: pointer;
+        }
+
+        .red-heart {
+            color: red;
+        }
+
+        .gray-heart {
+            color: gray;
+        }
+
+        .btn-done {
+            width: 100%;
+            height: 40px;
+            position: absolute;
+            bottom: 0;
+            border: none;
+            background-color: #ffd54f;
+            border-radius: 0px 0px 10px 10px;
+        }
+
+        .btn-done:hover {
+            cursor: pointer;
+        }
+
+        .page-info {
+            width: 100%;
+            height: 250px;
+            background-color: darkgray;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+        });
+
+        function like(id) {
+            let volunteer_no = id;
+            let subject = $(`#${id}-title`).text();
+            let recruit_period = $(`#${id}-period`).text();
+            let hour = $(`#${id}-hour`).val();
+            let href = $(`#${id}-href`).val();
+            console.log(volunteer_no, subject, recruit_period, hour, href);
+            $.ajax({
+                type: "POST",
+                url: "/like",
+                data: {
+                    volunteer_no: volunteer_no,
+                    subject: subject,
+                    recruit_period: recruit_period,
+                    hour: hour,
+                    href: href
+                },
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload();
+                }
+            })
+        }
+
+        function cancel_like(id) {
+            let volunteer_no = id;
+
+            console.log(volunteer_no);
+            $.ajax({
+                type: "POST",
+                url: "/cancel",
+                data: {
+                    volunteer_no: volunteer_no
+                },
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload();
+                }
+            })
+        }
+    </script>
+</head>
+
+<body>
+<header class="main-header">
+    <img class="logo_img" src="../static/logo.png" alt="로고">
+    <a href="/mypage">마이페이지</a>
+</header>
+<section class="mainpage">
+    <h1 class="mainpage-title">
+        연수구 봉사참여
+    </h1>
+    <article class="volunteer-scheduled">
+        <div id="card-box-scheduled" class="card-columns">
+            {% for volunteer in volunteers %}
+                {% set id = volunteer.volunteer_no %}
+                {% set title = volunteer.subject %}
+                {% set period = volunteer.recruit_period %}
+                {% set deadline = volunteer.before_deadline %}
+                {% set hour = volunteer.hour %}
+                {% set href = volunteer.href %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 id="{{ id }}-title" class="card-title">{{ title }}</h5>
+                        <p class="card-period">모집기간: <span id="{{ id }}-period">{{ period }}</span></p>
+                    </div>
+                    {% if id not in nos %}
+                        <i onclick="like({{ id }})" class="fas fa-heart gray-heart"></i>
+                    {% else %}
+                        <i onclick="cancel_like({{ id }})" class="fas fa-heart red-heart"></i>
+                    {% endif %}
+                    <p id="{{ id }}-deadline" class="card-deadline">마감 <span class="font-red">{{ deadline }}</span>일전</p>
+                    <input type="hidden" class="card-id blind" value="{{ id }}">
+                    <input id="{{ id }}-hour"type="hidden" class="card-id blind" value="{{ hour }}">
+                    <input id="{{ id }}-href"type="hidden" class="card-id blind" value="{{ href }}">
+                </div>
+            {% endfor %}
+        </div>
+    </article>
+</section>
+<footer class="page-info">
+</footer>
+</body>
+
+</html>
